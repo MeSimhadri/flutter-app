@@ -1,0 +1,159 @@
+{
+  "Background": {
+    "scroll": true,
+    "height": 0.45,
+    "image": "https://trello.com/1/cards/5dd0d1319965f254e805c14b/attachments/5dd79c81e884db8a19c22968/previews/5dd79c82e884db8a19c22978/download/fourquare.jpg"
+  },
+  "HorizonLayout": [
+    {
+      "isSafeArea":false,
+      "showSearch":false,
+      "usePrimaryColor":true,
+      "borderInput":false,
+      "title":"",
+      "type":"static",
+      "height":300.0,
+      "rotate":[],
+      "layout":"header_text"
+    },
+    {
+      "isSafeArea":false,
+      "showSearch":true,
+      "usePrimaryColor":false,
+      "borderInput":true,
+      "title":"Search for a product",
+      "alignment":"centerLeft",
+      "fontWeight":0,
+      "radius":6.0,
+      "fontSize":18.0,
+      "textOpacity":0.6,
+      "marginLeft":20.0,
+      "marginRight":20.0,
+      "marginBottom":15.0,
+      "marginTop":15.0,
+      "paddingLeft":14,
+      "paddingRight":15.0,
+      "paddingTop":0.0,
+      "paddingBottom":0.0,
+      "height":48.0,
+      "rotate":[],
+      "layout":"header_search"
+    },
+    {
+      "layout":"category",
+      "type":"icon",
+      "wrap":true,
+      "showShortDescription":true,
+      "size":1.3,
+      "radius":0.0,
+      "spacing":8.0,
+      "items":[
+        {
+          "category":"19",
+          "image":"https://trello.com/1/cards/619897c34b71ea18526c345a/attachments/619897d38f6ada5de7ee346e/previews/619897d38f6ada5de7ee347d/download/ls_build.png",
+          "colors":["#333333"],
+          "originalColor":false,
+          "keepDefaultTitle":false
+        },
+        {
+          "category":"19",
+          "image":"https://trello.com/1/cards/619897c34b71ea18526c345a/attachments/619897d4ca12a263f5feb533/previews/619897d4ca12a263f5feb536/download/ls_eat.png",
+          "colors":["#333333"],
+          "originalColor":false,
+          "keepDefaultTitle":false
+        },
+        {
+          "category":"19",
+          "image":"https://trello.com/1/cards/619897c34b71ea18526c345a/attachments/619897d5fd655c3a04277a6b/previews/619897d5fd655c3a04277a74/download/ls_event.png",
+          "colors":["#333333"],
+          "originalColor":false,
+          "keepDefaultTitle":false
+        },
+        {
+          "category":"19",
+          "image":"https://trello.com/1/cards/619897c34b71ea18526c345a/attachments/619897d60925296440a2f3e4/previews/619897d60925296440a2f3f2/download/ls_fitness.png",
+          "colors":["#333333"],
+          "originalColor":false,
+          "keepDefaultTitle":false
+        },
+        {
+          "category":"19",
+          "image":"https://trello.com/1/cards/619897c34b71ea18526c345a/attachments/619897d7e73f9e5370850bb7/previews/619897d7e73f9e5370850bbc/download/ls_other.png",
+          "colors":["#333333"],
+          "originalColor":false,
+          "keepDefaultTitle":false
+        },
+        {
+          "category":"19",
+          "image":"https://trello.com/1/cards/619897c34b71ea18526c345a/attachments/619897d8ae7e368406581979/previews/619897d9ae7e36840658199a/download/ls_service.png",
+          "colors":["#333333"],
+          "originalColor":false,
+          "keepDefaultTitle":false
+        },
+        {
+          "category":"19",
+          "image":"https://trello.com/1/cards/619897c34b71ea18526c345a/attachments/619897d60925296440a2f3e4/previews/619897d60925296440a2f3f2/download/ls_fitness.png",
+          "colors":["#333333"],
+          "originalColor":false,
+          "keepDefaultTitle":false
+        },
+        {
+          "category":"19",
+          "image":"https://trello.com/1/cards/619897c34b71ea18526c345a/attachments/619897d5fd655c3a04277a6b/previews/619897d5fd655c3a04277a74/download/ls_event.png",
+          "colors":["#333333"],
+          "originalColor":false,
+          "keepDefaultTitle":false
+        }
+      ],
+      "line":true,
+      "marginLeft":10.0,
+      "marginRight":10.0,
+      "marginTop":17.0,
+      "marginBottom":10.0,
+      "pos":300,
+      "paddingX":1.0,
+      "paddingY":2.0,
+      "marginX":0.0,
+      "marginY":0.0,
+      "hideTitle":false,
+      "noBackground":true,
+      "columns":4}
+  ],
+  "Setting": {
+    "MainColor": "#3FC1BE",
+    "FontFamily": "Roboto",
+    "ProductListLayout": "list"
+  },
+  "TabBar": [
+    {
+      "layout": "home",
+      "icon": "home",
+      "pos": 100,
+      "fontFamily": "CupertinoIcons",
+      "key": "p1q235ba14"
+    },
+    {
+      "pos": 200,
+      "layout": "category",
+      "icon": "rectangle_grid_1x2",
+      "fontFamily": "CupertinoIcons",
+      "categoryLayout": "card",
+      "key": "hwu0rkrizt"
+    },
+    {
+      "key": "2reihs4qzc",
+      "icon": "search",
+      "layout": "search",
+      "fontFamily": "CupertinoIcons",
+      "pos": 300,
+      "size": 24
+    },
+    {
+      "layout": "profile",
+      "fontFamily": "CupertinoIcons",
+      "pos": 500,
+      "key": "69jw5yx12d",
+      "icon": "person"
+    }
+  ]
+}
