@@ -368,8 +368,7 @@ class ListingService extends BaseServices {
   @override
   Future<User> loginApple({String? token}) async {
     try {
-      var endPoint =
-          '$domain/wp-json/api/flutter_user/apple_login';
+      var endPoint = '$domain/wp-json/api/flutter_user/apple_login';
       var response = await httpPost(endPoint.toUri()!,
           body: convert.jsonEncode({'token': token}),
           headers: {'Content-Type': 'application/json'});

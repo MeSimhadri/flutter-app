@@ -4,7 +4,7 @@ import '../../services/base_remote_config.dart';
 class FirebaseRemoteConfig implements BaseRemoteConfig {
   final RemoteConfig _remoteConfig;
 
-  FirebaseRemoteConfig(this._remoteConfig);
+  FirebaseRemoteConfig(this._remoteConfig, FirebaseRemoteConfig? remoteConfig);
 
   @override
   Future<void> activate() {

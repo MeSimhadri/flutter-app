@@ -70,7 +70,6 @@ class _AppInitState extends BaseScreen<AppInit> {
           await Provider.of<AppModel>(context, listen: false).loadAppConfig();
 
       Future.delayed(Duration.zero, () {
-
         /// Load more Category/Blog/Attribute Model beforehand
         final lang = Provider.of<AppModel>(context, listen: false).langCode;
 

@@ -120,21 +120,21 @@ class _StateSelectLayout extends State<MenuLayout> {
           future: getAllListBlogs(categories: categories),
           builder: (context, check) {
             if (blogs.isEmpty) {
-              return StaggeredGridView.countBuilder(
-                crossAxisCount: 4,
-                key: Key(categories[position].id.toString()),
-                shrinkWrap: true,
-                controller: _controller,
-                itemCount: 4,
-                itemBuilder: (context, value) {
-                  return BlogCard(
-                    item: Blog.empty(value),
-                    width: MediaQuery.of(context).size.width / 2,
-                    onTap: () {},
-                  );
-                },
-                staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
-              );
+              // return StaggeredGridView.countBuilder(
+              //   crossAxisCount: 4,
+              //   key: Key(categories[position].id.toString()),
+              //   shrinkWrap: true,
+              //   controller: _controller,
+              //   itemCount: 4,
+              //   itemBuilder: (context, value) {
+              //     return BlogCard(
+              //       item: Blog.empty(value),
+              //       width: MediaQuery.of(context).size.width / 2,
+              //       onTap: () {},
+              //     );
+              //   },
+              //   // staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
+              // );
             }
             if (blogs[position].isEmpty) {
               return SizedBox(
@@ -145,24 +145,23 @@ class _StateSelectLayout extends State<MenuLayout> {
               );
             }
             return MediaQuery.removePadding(
-              removeTop: true,
-              context: context,
-              child: StaggeredGridView.countBuilder(
-                crossAxisCount: 4,
-                key: Key(categories[position].id.toString()),
-                shrinkWrap: true,
-                controller: _controller,
-                itemCount: blogs[position].length,
-                itemBuilder: (context, value) {
-                  return BlogSelectCard(
-                    item: blogs[position][value],
-                    listBlog: blogs[position],
-                    width: MediaQuery.of(context).size.width / 2,
-                  );
-                },
-                staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
-              ),
-            );
+                removeTop: true, context: context, child: Container()
+                // child: StaggeredGridView.countBuilder(
+                //   crossAxisCount: 4,
+                //   key: Key(categories[position].id.toString()),
+                //   shrinkWrap: true,
+                //   controller: _controller,
+                //   itemCount: blogs[position].length,
+                //   itemBuilder: (context, value) {
+                //     return BlogSelectCard(
+                //       item: blogs[position][value],
+                //       listBlog: blogs[position],
+                //       width: MediaQuery.of(context).size.width / 2,
+                //     );
+                //   },
+                //   staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
+                // ),
+                );
           },
         )
       ],

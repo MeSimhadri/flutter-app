@@ -221,27 +221,28 @@ class _ProductListState extends State<ProductList> {
     required List<Product>? products,
     double? widthContent,
   }) {
-    return StaggeredGridView.countBuilder(
-      crossAxisCount: 4,
-      mainAxisSpacing: 4.0,
-      shrinkWrap: true,
-      primary: false,
-      crossAxisSpacing: 8.0,
-      padding: const EdgeInsets.only(
-        bottom: 32,
-        left: 8,
-        right: 8,
-      ),
-      itemCount: products!.length,
-      itemBuilder: (context, index) => PinterestCard(
-        item: products[index],
-        width: MediaQuery.of(context).size.width / 2,
-        config: ProductConfig.empty()
-          ..showCartIcon = widget.layout != 'columns' &&
-              products[index].canBeAddedToCartFromList,
-      ),
-      staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
-    );
+    return Container();
+    // return StaggeredGridView.countBuilder(
+    //   crossAxisCount: 4,
+    //   mainAxisSpacing: 4.0,
+    //   shrinkWrap: true,
+    //   primary: false,
+    //   crossAxisSpacing: 8.0,
+    //   padding: const EdgeInsets.only(
+    //     bottom: 32,
+    //     left: 8,
+    //     right: 8,
+    //   ),
+    //   itemCount: products!.length,
+    //   itemBuilder: (context, index) => PinterestCard(
+    //     item: products[index],
+    //     width: MediaQuery.of(context).size.width / 2,
+    //     config: ProductConfig.empty()
+    //       ..showCartIcon = widget.layout != 'columns' &&
+    //           products[index].canBeAddedToCartFromList,
+    //   ),
+    //   staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
+    // );
   }
 
   Widget buildListView({

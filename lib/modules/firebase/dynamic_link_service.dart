@@ -22,36 +22,29 @@ class DynamicLinkService {
         packageName: firebaseDynamicLinkConfig['androidPackageName'],
         minimumVersion: firebaseDynamicLinkConfig['androidAppMinimumVersion'],
       ),
-      iosParameters: IosParameters(
-        bundleId: firebaseDynamicLinkConfig['iOSBundleId'],
-        minimumVersion: firebaseDynamicLinkConfig['iOSAppMinimumVersion'],
-        appStoreId: firebaseDynamicLinkConfig['iOSAppStoreId'],
-      ),
+      // iosParameters: IosParameters(
+      //   bundleId: firebaseDynamicLinkConfig['iOSBundleId'],
+      //   minimumVersion: firebaseDynamicLinkConfig['iOSAppMinimumVersion'],
+      //   appStoreId: firebaseDynamicLinkConfig['iOSAppStoreId'],
+      // ),
     );
   }
 
   Future<Uri> generateFirebaseDynamicLink(DynamicLinkParameters params) async {
     if (firebaseDynamicLinkConfig['shortDynamicLinkEnable'] ?? false) {
-      final shortDynamicLink = await params.buildShortLink();
-      return shortDynamicLink.shortUrl;
+      // final shortDynamicLink = await params.buildShortLink();
+      // return shortDynamicLink.shortUrl;
+
+      return Uri.parse('https://example.com');
     } else {
-      return await params.buildUrl();
+      // return await params.buildUrl();
+      return Uri.parse('https://example.com');
     }
   }
 
   static void initDynamicLinks(BuildContext context) async {
     // A listener for link callbacks when the app is in background calling
-    FirebaseDynamicLinks.instance.onLink(
-        onSuccess: (PendingDynamicLinkData? dynamicLink) async {
-      final deepLink = dynamicLink?.link;
-
-      if (deepLink != null) {
-        printLog('[firebase-dynamic-link] onLink: $deepLink');
-        await handleDynamicLink(deepLink.toString(), context);
-      }
-    }, onError: (OnLinkErrorException e) async {
-      printLog('[firebase-dynamic-link] error: ${e.message}');
-    });
+    FirebaseDynamicLinks.instance.onLink;
     // the getInitialLink() gets the link that opened the app (or null if it was not opened via a dynamic link)
     final data = await FirebaseDynamicLinks.instance.getInitialLink();
     final deepLink = data?.link;

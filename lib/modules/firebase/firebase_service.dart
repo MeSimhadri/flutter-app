@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../common/config.dart';
@@ -15,7 +16,7 @@ import '../../services/base_firebase_services.dart';
 import '../../services/services.dart';
 import 'dynamic_link_service.dart';
 import 'firebase_analytics_service.dart';
-import 'firebase_remote_config.dart';
+// import 'firebase_remote_config.dart';
 import 'firebase_remote_service.dart';
 import 'realtime_chat/chat_screen.dart';
 import 'realtime_chat/list_chat_screen.dart';
@@ -47,9 +48,9 @@ class FirebaseServices extends BaseFirebaseServices {
     _auth = FirebaseAuth.instance;
     _firestore = FirebaseFirestore.instance;
 
-    if (!kIsWeb) {
-      _remoteConfig = FirebaseRemoteConfig(RemoteConfig.instance);
-    }
+    // if (!kIsWeb) {
+    //   _remoteConfig = FirebaseRemoteConfig;
+    // }
 
     /// Require Play Services
     const message = '[FirebaseServices] Init successfully';
@@ -247,10 +248,10 @@ class FirebaseServices extends BaseFirebaseServices {
     DynamicLinkService.initDynamicLinks(context);
   }
 
-  @override
-  Future<FirebaseRemoteConfig?> loadRemoteConfig({onUpdate}) async {
-    return FirebaseRemoteServices.loadRemoteConfig();
-  }
+  // @override
+  // Future<FirebaseRemoteConfig?> loadRemoteConfig({onUpdate}) async {
+  //   return FirebaseRemoteServices.loadRemoteConfig();
+  // }
 
   @override
   void shareDynamicLinkProduct({context, itemUrl}) {

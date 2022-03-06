@@ -66,24 +66,25 @@ class _PinterestLayoutState extends State<PinterestLayout> {
         MediaQuery.removePadding(
           context: context,
           removeTop: true,
-          child: StaggeredGridView.countBuilder(
-            crossAxisCount: 4,
-            mainAxisSpacing: 4.0,
-            shrinkWrap: true,
-            primary: false,
-            padding: EdgeInsets.symmetric(
-              vertical: widget.config.vPadding,
-              horizontal: widget.config.hPadding,
-            ),
-            crossAxisSpacing: 4.0,
-            itemCount: _products!.length,
-            itemBuilder: (context, index) => PinterestCard(
-              item: _products![index],
-              width: MediaQuery.of(context).size.width / 2,
-              config: widget.config,
-            ),
-            staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
-          ),
+          child: Container(),
+          // child: StaggeredGridView.countBuilder(
+          //   crossAxisCount: 4,
+          //   mainAxisSpacing: 4.0,
+          //   shrinkWrap: true,
+          //   primary: false,
+          //   padding: EdgeInsets.symmetric(
+          //     vertical: widget.config.vPadding,
+          //     horizontal: widget.config.hPadding,
+          //   ),
+          //   crossAxisSpacing: 4.0,
+          //   itemCount: _products!.length,
+          //   itemBuilder: (context, index) => PinterestCard(
+          //     item: _products![index],
+          //     width: MediaQuery.of(context).size.width / 2,
+          //     config: widget.config,
+          //   ),
+          //   staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
+          // ),
         ),
         _isEnd
             ? Text(S.of(context).noData)

@@ -43,25 +43,24 @@ class _PinterestLayoutState extends State<PinterestLayout> {
     return Column(
       children: <Widget>[
         MediaQuery.removePadding(
-          context: context,
-          removeTop: true,
-          child: StaggeredGridView.countBuilder(
-            crossAxisCount: 4,
-            mainAxisSpacing: 4.0,
-            shrinkWrap: true,
-            primary: false,
-            crossAxisSpacing: 4.0,
-            itemCount: _blogs.length,
-            itemBuilder: (context, index) => PinterestCard(
-              item: _blogs[index],
-              listBlog: _blogs,
-              showOnlyImage: widget.config.showOnlyImage,
-              width: MediaQuery.of(context).size.width / 2,
-              showCart: false,
+            context: context, removeTop: true, child: Container()
+            // child: StaggeredGridView.countBuilder(
+            //   crossAxisCount: 4,
+            //   mainAxisSpacing: 4.0,
+            //   shrinkWrap: true,
+            //   primary: false,
+            //   crossAxisSpacing: 4.0,
+            //   itemCount: _blogs.length,
+            //   itemBuilder: (context, index) => PinterestCard(
+            //     item: _blogs[index],
+            //     listBlog: _blogs,
+            //     showOnlyImage: widget.config.showOnlyImage,
+            //     width: MediaQuery.of(context).size.width / 2,
+            //     showCart: false,
+            //   ),
+            //   staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
+            // ),
             ),
-            staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
-          ),
-        ),
       ],
     );
   }
