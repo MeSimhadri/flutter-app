@@ -170,27 +170,27 @@ class _StateMenuLayout extends State<MenuLayout> {
               context: context,
               child: LayoutBuilder(builder: (context, constraints) {
                 if (loading) {
-                  return StaggeredGridView.countBuilder(
-                    crossAxisCount: 4,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: widget.config.hPadding,
-                      vertical: widget.config.vPadding,
-                    ),
-                    key: categories.isNotEmpty
-                        ? Key(categories[position].id.toString())
-                        : UniqueKey(),
-                    shrinkWrap: true,
-                    controller: _controller,
-                    itemCount: 4,
-                    itemBuilder: (context, value) {
-                      return Services().widget.renderProductCardView(
-                            item: Product.empty(value.toString()),
-                            width: MediaQuery.of(context).size.width / 2,
-                            config: widget.config,
-                          );
-                    },
-                    staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
-                  );
+                  // return StaggeredGridView.countBuilder(
+                  //   crossAxisCount: 4,
+                  //   padding: EdgeInsets.symmetric(
+                  //     horizontal: widget.config.hPadding,
+                  //     vertical: widget.config.vPadding,
+                  //   ),
+                  //   key: categories.isNotEmpty
+                  //       ? Key(categories[position].id.toString())
+                  //       : UniqueKey(),
+                  //   shrinkWrap: true,
+                  //   controller: _controller,
+                  //   itemCount: 4,
+                  //   itemBuilder: (context, value) {
+                  //     return Services().widget.renderProductCardView(
+                  //           item: Product.empty(value.toString()),
+                  //           width: MediaQuery.of(context).size.width / 2,
+                  //           config: widget.config,
+                  //         );
+                  //   },
+                  //   staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
+                  // );
                 }
                 if (snapshot.hasData && snapshot.data.isNotEmpty) {
                   return GridView.builder(

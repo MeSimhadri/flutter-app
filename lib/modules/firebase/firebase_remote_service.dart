@@ -1,6 +1,7 @@
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:inspireui/utils/logs.dart';
 
-import 'firebase_remote_config.dart';
+import 'firebase_remote_config.dart' as remote;
 import 'firebase_service.dart';
 
 class FirebaseRemoteServices {

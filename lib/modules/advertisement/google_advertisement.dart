@@ -88,7 +88,8 @@ class GoogleAdvertisement extends AdvertisementBase {
               onAdImpression: (RewardedAd ad) =>
                   printLog('$_preFix $ad impression occurred.'),
             )
-            ..show(onUserEarnedReward: (RewardedAd ad, RewardItem rewardItem) {
+            ..show(
+                onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
               // Reward the user for watching an ad.h
             });
         },

@@ -230,31 +230,32 @@ class _BlogListBackdropState extends State<BlogListBackdrop> {
     required List<Blog> blogs,
     double? widthContent,
   }) {
-    return StaggeredGridView.countBuilder(
-      crossAxisCount: 4,
-      mainAxisSpacing: 4.0,
-      shrinkWrap: true,
-      primary: false,
-      crossAxisSpacing: 8.0,
-      padding: const EdgeInsets.only(
-        bottom: 32,
-        left: 8,
-        right: 8,
-      ),
-      itemCount: blogs.length,
-      itemBuilder: (context, index) => BlogCard(
-          item: blogs[index],
-          width: MediaQuery.of(context).size.width / 2,
-          onTap: () {
-            FluxNavigate.pushNamed(
-              RouteList.detailBlog,
-              arguments: BlogDetailArguments(
-                blog: blogs[index],
-                listBlog: blogs,
-              ),
-            );
-          }),
-      staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
-    );
+    return Container();
+    // return StaggeredGridView.countBuilder(
+    //   crossAxisCount: 4,
+    //   mainAxisSpacing: 4.0,
+    //   shrinkWrap: true,
+    //   primary: false,
+    //   crossAxisSpacing: 8.0,
+    //   padding: const EdgeInsets.only(
+    //     bottom: 32,
+    //     left: 8,
+    //     right: 8,
+    //   ),
+    //   itemCount: blogs.length,
+    //   itemBuilder: (context, index) => BlogCard(
+    //       item: blogs[index],
+    //       width: MediaQuery.of(context).size.width / 2,
+    //       onTap: () {
+    //         FluxNavigate.pushNamed(
+    //           RouteList.detailBlog,
+    //           arguments: BlogDetailArguments(
+    //             blog: blogs[index],
+    //             listBlog: blogs,
+    //           ),
+    //         );
+    //       }),
+    //   staggeredTileBuilder: (index) => const StaggeredTile.fit(2),
+    // );
   }
 }

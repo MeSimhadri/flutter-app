@@ -9,14 +9,14 @@ import '../../../../screens/blog/index.dart';
 import '../../../../widgets/blog/blog_heart_button.dart';
 import '../../../../widgets/common/index.dart' show FluxImage;
 
-List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
-  StaggeredTile.count(2, 1),
-  StaggeredTile.count(1, 1),
-  StaggeredTile.count(3, 2),
-  StaggeredTile.count(1, 1),
-  StaggeredTile.count(1, 1),
-  StaggeredTile.count(1, 1),
-];
+// List<StaggeredTile> _staggeredTiles = const <StaggeredTile>[
+//   StaggeredTile.count(2, 1),
+//   StaggeredTile.count(1, 1),
+//   StaggeredTile.count(3, 2),
+//   StaggeredTile.count(1, 1),
+//   StaggeredTile.count(1, 1),
+//   StaggeredTile.count(1, 1),
+// ];
 
 class BlogStaggered extends StatefulWidget {
   final List<Blog> blogs;
@@ -41,27 +41,27 @@ class _StateProductStaggered extends State<BlogStaggered> {
       return Container(
         padding: const EdgeInsets.only(left: 15.0),
         height: MediaQuery.of(context).size.height * 0.4,
-        child: StaggeredGridView.countBuilder(
-          crossAxisCount: 3,
-          scrollDirection: Axis.horizontal,
-          itemCount: widget.blogs.length,
-          itemBuilder: (context, index) {
-            return Center(
-              child: StaggeredBlogCard(
-                width: (constraints.maxWidth / 3) *
-                    _staggeredTiles[index % 6].mainAxisCellCount!.toDouble(),
-                height: (constraints.maxWidth / 3) *
-                        _staggeredTiles[index % 6].crossAxisCellCount -
-                    20,
-                blogs: widget.blogs,
-                index: index,
-              ),
-            );
-          },
-          staggeredTileBuilder: (int index) => _staggeredTiles[index % 6],
-          mainAxisSpacing: 4.0,
-          crossAxisSpacing: 4.0,
-        ),
+        // child: StaggeredGridView.countBuilder(
+        //   crossAxisCount: 3,
+        //   scrollDirection: Axis.horizontal,
+        //   itemCount: widget.blogs.length,
+        //   itemBuilder: (context, index) {
+        //     return Center(
+        //       child: StaggeredBlogCard(
+        //         width: (constraints.maxWidth / 3) *
+        //             _staggeredTiles[index % 6].mainAxisCellCount!.toDouble(),
+        //         height: (constraints.maxWidth / 3) *
+        //                 _staggeredTiles[index % 6].crossAxisCellCount -
+        //             20,
+        //         blogs: widget.blogs,
+        //         index: index,
+        //       ),
+        //     );
+        //   },
+        //   staggeredTileBuilder: (int index) => _staggeredTiles[index % 6],
+        //   mainAxisSpacing: 4.0,
+        //   crossAxisSpacing: 4.0,
+        // ),
       );
     });
   }

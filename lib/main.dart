@@ -26,9 +26,10 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   printLog('Handling a background message ${message.messageId}');
 }
 
-void main() {
+void main() async {
   printLog('[main] ===== START main.dart =======');
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   Configurations().setConfigurationValues(environment);
   Provider.debugCheckInvalidValueType = null;
   var languageCode =

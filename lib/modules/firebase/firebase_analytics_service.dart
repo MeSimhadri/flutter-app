@@ -14,7 +14,7 @@ class FirebaseAnalyticsService extends FirebaseAnalyticsAbs {
 
   @override
   void init() {
-    analytics = FirebaseAnalytics();
+    analytics = FirebaseAnalytics.instance;
 
     return super.init();
   }
