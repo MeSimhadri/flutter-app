@@ -40,7 +40,7 @@ void main() async {
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
   });
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  runZonedGuarded(() async {
+ await runZonedGuarded(() async {
     if (!foundation.kIsWeb) {
       /// Enable network traffic logging.
       HttpClient.enableTimelineLogging = !foundation.kReleaseMode;

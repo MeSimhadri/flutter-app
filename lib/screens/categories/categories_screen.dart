@@ -152,7 +152,7 @@ class CategoriesScreenState extends State<CategoriesScreen>
                 padding: const EdgeInsets.only(
                     top: 10, left: 10, bottom: 10, right: 10),
                 child: Text(
-                  S.of(context).category,
+                  'Categories',
                   style: Theme.of(context)
                       .textTheme
                       .headline5!
@@ -160,17 +160,23 @@ class CategoriesScreenState extends State<CategoriesScreen>
                 ),
               ),
               if (widget.showSearch)
-                IconButton(
-                  icon: Icon(
-                    Icons.search,
-                    color: Theme.of(context)
-                        .colorScheme
-                        .secondary
-                        .withOpacity(0.6),
+                Container(
+                  margin: const EdgeInsets.only(right: 16),
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: maintabBlue, width: 2)),
+                  child: InkWell(
+                    child: Image.asset(
+                      'assets/icons/tabs/icon-search.png',
+                      color: maintabBlue,
+                      width: 25,
+                      height: 25,
+                    ),
+                    onTap: () {
+                      Navigator.of(context).pushNamed(RouteList.categorySearch);
+                    },
                   ),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(RouteList.categorySearch);
-                  },
                 ),
             ],
           ),

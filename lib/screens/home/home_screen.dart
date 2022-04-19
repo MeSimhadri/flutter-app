@@ -67,15 +67,17 @@ class _HomeScreenState extends BaseScreen<HomeScreen>
             final isShowAppbar = horizontalLayoutList.isNotEmpty &&
                 horizontalLayoutList.first['layout'] == 'logo';
             return Scaffold(
-              backgroundColor: Theme.of(context).backgroundColor,
+              // extendBodyBehindAppBar: true,
+              backgroundColor: Colors.transparent,
+              // backgroundColor: Theme.of(context).backgroundColor,
               body: Stack(
                 children: <Widget>[
-                  if (appConfig.background != null)
-                    isStickyHeader
-                        ? SafeArea(
-                            child: HomeBackground(config: appConfig.background),
-                          )
-                        : HomeBackground(config: appConfig.background),
+                  // if (appConfig.background != null)
+                  //   isStickyHeader
+                  //       ? SafeArea(
+                  //           child: HomeBackground(config: appConfig.background),
+                  //         )
+                  //       : HomeBackground(config: appConfig.background),
                   HomeLayout(
                     isPinAppBar: isStickyHeader,
                     isShowAppbar: isShowAppbar,
@@ -84,7 +86,8 @@ class _HomeScreenState extends BaseScreen<HomeScreen>
                     configs: json,
                     key: UniqueKey(),
                   ),
-                  if (Config().isBuilder) const WrapStatusBar(),
+                  // if (Config().isBuilder) 
+                  // const WrapStatusBar(color: Colors.amber,),
                 ],
               ),
             );

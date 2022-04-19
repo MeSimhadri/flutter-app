@@ -92,8 +92,10 @@ class ProductList extends StatelessWidget {
                 ),
               ),
             HeaderView(
-              headerText: config.name ?? '',
-              showSeeAll: _isRecentLayout ? false : true,
+              // headerText: config.name ?? '',
+              headerText: 'Featured Listings',
+              // showSeeAll: _isRecentLayout ? false : true,
+              showSeeAll: false,
               verticalMargin: config.image != null ? 6.0 : 10.0,
               callback: () => ProductModel.showList(
                 context: context,
@@ -105,6 +107,7 @@ class ProductList extends StatelessWidget {
               showCountdown: isShowCountDown() && _duration > 0,
               countdownDuration: Duration(milliseconds: _duration),
             ),
+            const SizedBox(height: 10),
             getProductLayout(maxWidth: maxWidth, products: products),
             // : ProductListWidgets(context, products, maxWidth),
           ],

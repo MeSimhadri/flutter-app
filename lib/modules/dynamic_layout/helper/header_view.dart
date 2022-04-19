@@ -48,7 +48,7 @@ class HeaderView extends StatelessWidget {
                 children: [
                   Text(
                     headerText ?? '',
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.headline6!.copyWith(fontWeight: FontWeight.bold),
                   ),
                   if (showCountdown)
                     Row(

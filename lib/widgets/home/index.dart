@@ -1,12 +1,17 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart' as foundation;
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fstore/routes/flux_navigate.dart';
 import 'package:provider/provider.dart';
-
+import '../../app.dart';
 import '../../common/constants.dart';
 import '../../common/tools.dart';
 import '../../models/app_model.dart';
 import '../../models/cart/cart_base.dart';
+import '../../models/category_model.dart';
+import '../../models/entities/back_drop_arguments.dart';
+import '../../models/entities/category.dart';
 import '../../models/notification_model.dart';
 import '../../modules/dynamic_layout/config/logo_config.dart';
 import '../../modules/dynamic_layout/dynamic_layout.dart';
@@ -168,12 +173,65 @@ class _HomeLayoutState extends State<HomeLayout> with AppBarMixin {
     );
   }
 
+  Widget categoryWidget({required Category category}) {
+    var image = 'assets/categories/others icon.png';
+    if (category.name!.toLowerCase().contains('camping')) {
+      image = 'assets/categories/tent_icon.png';
+    } else if (category.name!.toLowerCase().contains('events')) {
+      image = 'assets/categories/Events Icon.png';
+    } else if (category.name!.toLowerCase().contains('fitness')) {
+      image = 'assets/categories/Fitness Icon.png';
+    } else if (category.name!.toLowerCase().contains('water sports')) {
+      image = 'assets/categories/WaterSports Icon.png';
+    } else if (category.name!.toLowerCase().contains('escape house')) {
+      image = 'assets/categories/escape house-42.png';
+    } else if (category.name!.toLowerCase().contains('yacht')) {
+      image = 'assets/categories/yacht icon.png';
+    }
+    return InkWell(
+      onTap: () {
+        FluxNavigate.pushNamed(
+          RouteList.backdrop,
+          arguments: BackDropArguments(
+            cateId: category.id,
+            cateName: category.name,
+          ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(right: 10),
+        width: 80,
+        height: 80,
+        decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: BorderRadius.circular(6),
+            border: Border.all(color: Colors.grey[300]!, width: 2)),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+              child: Image.asset(image, width: 40, height: 40),
+            ),
+            Text(
+              category.name ?? '',
+              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 11),
+            ),
+            const SizedBox(height: 10)
+          ],
+        ),
+      ),
+    );
+  }
+
+  final bannerHigh = 140.0;
+
   @override
   Widget build(BuildContext context) {
+    final category = Provider.of<CategoryModel>(context);
     if (widget.configs == null) return const SizedBox();
 
     ErrorWidget.builder = (error) {
-      if (kReleaseMode) {
+      if (foundation.kReleaseMode) {
         return const SizedBox();
       }
       return Container(
@@ -200,8 +258,112 @@ class _HomeLayoutState extends State<HomeLayout> with AppBarMixin {
           cacheExtent: 2000.0,
           physics: const BouncingScrollPhysics(),
           slivers: [
-            if (widget.showNewAppBar) sliverAppBarWidget,
-            if (widget.isShowAppbar && !widget.showNewAppBar) renderAppBar(),
+            SliverAppBar(
+              expandedHeight: bannerHigh,
+              floating: true,
+              pinned: true,
+              // snap: true,
+              flexibleSpace: Stack(
+                children: <Widget>[
+                  Positioned.fill(
+                      child: Image.asset(
+                    'assets/images/home_banner.png',
+                    fit: BoxFit.cover,
+                  )),
+                  Positioned.fill(
+                      top: 0,
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        color: Colors.transparent,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    height: 40,
+                                    margin: const EdgeInsets.fromLTRB(
+                                        20, 0, 20, 10),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8, horizontal: 16),
+                                    // width: MediaQuery.of(context).size.width*0.8,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: Colors.white),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.of(App.fluxStoreNavigatorKey
+                                                .currentContext!)
+                                            .pushNamed(RouteList.homeSearch);
+                                      },
+                                      child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: const [
+                                            Text(
+                                              'What are you looking for?',
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                            Icon(
+                                              CupertinoIcons.search,
+                                            )
+                                          ]),
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.of(context)
+                                        .pushNamed(RouteList.notify);
+                                  },
+                                  child: Container(
+                                    alignment: Alignment.center,
+                                    margin: const EdgeInsets.only(
+                                        bottom: 10, right: 20),
+                                    height: 40,
+                                    width: 40,
+                                    padding: const EdgeInsets.all(0),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(14)),
+                                    child: Stack(
+                                      children: <Widget>[
+                                        const Icon(
+                                            Icons.notifications_none_rounded),
+                                        if (Provider.of<NotificationModel>(
+                                                    context)
+                                                .unreadCount >
+                                            0)
+                                          const Positioned(
+                                              right: -8,
+                                              top: 10,
+                                              left: 0,
+                                              child: Icon(Icons.circle,
+                                                  size: 8, color: Colors.red))
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ))
+                ],
+              ),
+            ),
+            
+            // if (widget.showNewAppBar) sliverAppBarWidget,
+            // if (widget.isShowAppbar && !widget.showNewAppBar) renderAppBar(),
             CupertinoSliverRefreshControl(
               onRefresh: () async {
                 await Provider.of<ListBlogModel>(context, listen: false)
@@ -218,6 +380,40 @@ class _HomeLayoutState extends State<HomeLayout> with AppBarMixin {
               },
             ),
             SliverList(
+                delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 10),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Text(
+                        'Popular Categories',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      height: 80,
+                      padding: const EdgeInsets.only(left: 10),
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: category.categories!.length,
+                          itemBuilder: (context, index) {
+                            return categoryWidget(
+                                category: category.categories![index]);
+                          }),
+                    )
+                  ],
+                );
+              },
+              childCount: 1,
+            )),
+
+            SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   var config = widgetData[index];
@@ -225,14 +421,14 @@ class _HomeLayoutState extends State<HomeLayout> with AppBarMixin {
                   /// if show app bar, the preview should plus +1
                   var previewIndex = widget.isShowAppbar ? index + 1 : index;
 
-                  if (config['type'] != null && config['type'] == 'vertical') {
-                    return PreviewOverlay(
-                        index: previewIndex,
-                        config: config,
-                        builder: (value) {
-                          return Services().widget.renderVerticalLayout(value);
-                        });
-                  }
+                  // if (config['type'] != null && config['type'] == 'vertical') {
+                  //   return PreviewOverlay(
+                  //       index: previewIndex,
+                  //       config: config,
+                  //       builder: (value) {
+                  //         return Services().widget.renderVerticalLayout(value);
+                  //       });
+                  // }
 
                   return PreviewOverlay(
                     index: previewIndex,
@@ -248,7 +444,7 @@ class _HomeLayoutState extends State<HomeLayout> with AppBarMixin {
             ),
           ],
         ),
-        const _FakeStatusBar(),
+        // const _FakeStatusBar(),
       ],
     );
   }

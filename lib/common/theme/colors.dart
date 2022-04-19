@@ -6,21 +6,24 @@ import '../tools.dart';
 const kEmptyColor = 0x0D000000;
 
 /// Color env config
-Color? get darkBackgroundColor => (kDarkConfig.backgroundColor?.isNotEmpty ?? false)
-    ? HexColor(kDarkConfig.backgroundColor)
-    : null;
+Color? get darkBackgroundColor =>
+    (kDarkConfig.backgroundColor?.isNotEmpty ?? false)
+        ? HexColor(kDarkConfig.backgroundColor)
+        : null;
 
-Color? get darkPrimaryColorLight => (kDarkConfig.primaryColorLight?.isNotEmpty ?? false)
-    ? HexColor(kDarkConfig.primaryColorLight)
-    : null;
+Color? get darkPrimaryColorLight =>
+    (kDarkConfig.primaryColorLight?.isNotEmpty ?? false)
+        ? HexColor(kDarkConfig.primaryColorLight)
+        : null;
 
 Color? get darkTextColor => (kDarkConfig.textColor?.isNotEmpty ?? false)
     ? HexColor(kDarkConfig.textColor)
     : null;
 
-Color? get darkSecondaryColor => (kDarkConfig.secondaryColor?.isNotEmpty ?? false)
-    ? HexColor(kDarkConfig.secondaryColor)
-    : null;
+Color? get darkSecondaryColor =>
+    (kDarkConfig.secondaryColor?.isNotEmpty ?? false)
+        ? HexColor(kDarkConfig.secondaryColor)
+        : null;
 
 Color? get lightBackgroundColor =>
     (kLightConfig.backgroundColor?.isNotEmpty ?? false)
@@ -36,9 +39,10 @@ Color? get lightTextColor => (kLightConfig.textColor?.isNotEmpty ?? false)
     ? HexColor(kLightConfig.textColor)
     : null;
 
-Color? get lightSecondaryColor => (kLightConfig.secondaryColor?.isNotEmpty ?? false)
-    ? HexColor(kLightConfig.secondaryColor)
-    : null;
+Color? get lightSecondaryColor =>
+    (kLightConfig.secondaryColor?.isNotEmpty ?? false)
+        ? HexColor(kLightConfig.secondaryColor)
+        : null;
 
 /// Color theme
 const ColorScheme kColorScheme = ColorScheme(
@@ -79,6 +83,10 @@ const kDarkAccent = Color(0xffF4F5F5);
 const kLightBG = Color(0xffF1F2F3);
 const kDarkBG = Color(0xff1B1D26);
 const kDarkBgLight = Color(0xff282D39);
+
+const mainBlue = Color(0XFF00508C);
+const textBlue = Color(0XFF159EFE);
+const maintabBlue=Color(0XFF2D6A86);
 
 /// This color is define for the Product variant Color
 /// Please add more color to match with your Product Color name

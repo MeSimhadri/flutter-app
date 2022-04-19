@@ -24,7 +24,7 @@ class VerticalLayout extends StatelessWidget {
         return VerticalViewLayout(config: productConfig);
     }
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Column(

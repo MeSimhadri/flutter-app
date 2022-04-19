@@ -49,13 +49,13 @@ class ProductListDefault extends StatelessWidget {
         ),
       ),
       child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
+        // scrollDirection: Axis.horizontal,
         physics: config.isSnapping ?? false
             ? CustomScrollPhysic(
                 width: Layout.buildProductWidth(
                     screenWidth: width, layout: layout))
             : const ScrollPhysics(),
-        child: Row(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             if (enableBackground)
@@ -74,10 +74,11 @@ class ProductListDefault extends StatelessWidget {
             for (var i = 0; i < products.length; i++)
               Services().widget.renderProductCardView(
                     item: products[i],
-                    width: Layout.buildProductWidth(
-                      screenWidth: maxWidth,
-                      layout: layout,
-                    ),
+                    width: double.infinity,
+                    // Layout.buildProductWidth(
+                    //   screenWidth: maxWidth,
+                    //   layout: layout,
+                    // ),
                     maxWidth: Layout.buildProductMaxWidth(layout: layout),
                     height: Layout.buildProductHeight(
                       layout: layout,

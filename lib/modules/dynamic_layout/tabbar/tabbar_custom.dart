@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../common/constants.dart';
 import '../config/app_setting.dart';
 import '../config/tab_bar_config.dart';
 import '../helper/helper.dart';
@@ -30,6 +31,8 @@ class TabBarCustom extends StatelessWidget {
     required this.onTap,
     required this.tabData,
   }) : super(key: key);
+
+//  List<String> icons=['assets/icons/tabs/icon-home.png','assets/icons/tabs/icon-category.png','search','settings'];
 
   Decoration _buildIndicator(context) {
     var indicator = config.tabBarConfig.tabBarIndicator;
@@ -72,6 +75,12 @@ class TabBarCustom extends StatelessWidget {
   }
 
   Widget _buildTabBar(context) {
+    var icons = <String>[
+      'assets/icons/tabs/icon-home.png',
+      'assets/icons/tabs/icon-category.png',
+      'search',
+      'settings_outlined'
+    ];
     var tabConfig = config.tabBarConfig;
 
     final colorIcon =
@@ -89,27 +98,51 @@ class TabBarCustom extends StatelessWidget {
         ? position
         : (tabData.length / 2).floor();
 
-    return TabBar(
-      key: const Key('mainTabBar'),
-      controller: tabController,
-      onTap: onTap,
-      tabs: [
-        for (var i = 0; i < tabData.length; i++)
-          TabBarIcon(
-            key: Key('TabBarIcon-$i'),
-            item: tabData[i],
-            totalCart: totalCart,
-            isActive: i == tabController.index,
-            isEmptySpace: tabConfig.showFloating && i == _floatingIndex,
-            config: tabConfig,
-          ),
-      ],
-      isScrollable: false,
-      labelColor: colorActiveIcon,
-      unselectedLabelColor: colorIcon,
-      indicatorSize: _indicatorSize,
-      indicatorColor: colorActiveIcon,
-      indicator: _buildIndicator(context),
+    return Container(
+      margin: const EdgeInsets.fromLTRB(16, 0, 16, 1),
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      decoration: BoxDecoration(
+          color: maintabBlue, borderRadius: BorderRadius.circular(50)),
+      child: TabBar(
+        key: const Key('mainTabBar'),
+        controller: tabController,
+        onTap: onTap,
+        tabs: [
+          for (var i = 0; i < tabData.length; i++)
+            TabBarIcon(
+              key: Key('TabBarIcon-$i'),
+              item: tabData[i],
+              totalCart: totalCart,
+              isActive: i == tabController.index,
+              isEmptySpace: tabConfig.showFloating && i == _floatingIndex,
+              config: tabConfig,
+              myicon: icons[i],
+            ),
+        ],
+        isScrollable: false,
+        // labelColor: colorActiveIcon,
+        labelColor: Colors.white,
+        // unselectedLabelColor: colorIcon,
+        unselectedLabelColor: Colors.white60,
+        indicatorSize: _indicatorSize,
+        indicatorColor: colorActiveIcon,
+        indicatorPadding: const EdgeInsets.only(bottom: 10),
+        indicator: const UnderlineTabIndicator(
+            insets: EdgeInsets.symmetric(horizontal: 2)),
+        // indicator: _buildIndicator(context),
+        // indicator: RectangularIndicator(
+        //   color: Colors.white,
+        //     topRightRadius:  5,
+        //     topLeftRadius:  5,
+        //     bottomRightRadius:  0,
+        //     bottomLeftRadius:  0,
+
+        //     horizontalPadding:  0.0,
+        //     strokeWidth:  1.0,
+        //     verticalPadding:  0.0,
+        //     paintingStyle:PaintingStyle.fill
+        //     ),
+      ),
     );
   }
 
@@ -165,16 +198,18 @@ class TabBarCustom extends StatelessWidget {
               child: SafeArea(
                 bottom: tabConfig.isSafeArea,
                 child: Container(
-                  decoration: BoxDecoration(
-                    border: Border(
-                      top: BorderSide(
-                        color: Theme.of(context).dividerColor,
-                        width: 0.5,
-                      ),
-                    ),
+                  decoration:const BoxDecoration(
+                    color: Colors.transparent,
+                    // border: Border(
+                    //   top: BorderSide(
+                    //     color: Theme.of(context).dividerColor,
+                    //     width: 0.5,
+                    //   ),
+                    // ),
                   ),
                   child: !Layout.isDisplayDesktop(context)
-                      ? SizedBox(
+                      ? Container(
+                          color: Colors.transparent,
                           width: MediaQuery.of(context).size.width,
                           child: _buildTabBar(context),
                         )

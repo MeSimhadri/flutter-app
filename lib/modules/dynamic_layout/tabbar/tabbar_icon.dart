@@ -14,6 +14,7 @@ class TabBarIcon extends StatelessWidget {
   final bool isEmptySpace;
   final bool isActive;
   final TabBarConfig config;
+  final String myicon;
 
   const TabBarIcon({
     required Key key,
@@ -22,6 +23,7 @@ class TabBarIcon extends StatelessWidget {
     required this.isEmptySpace,
     required this.isActive,
     required this.config,
+    required this.myicon,
   }) : super(key: key);
 
   @override
@@ -36,19 +38,24 @@ class TabBarIcon extends StatelessWidget {
     Widget icon = Builder(
       builder: (_context) {
         var iconColor = IconTheme.of(_context).color;
-        var isImage = item.icon.contains('/');
+        // var isImage = item.icon.contains('/');
+        var isImage = myicon.contains('/');
         return isImage
             ? FluxImage(
-                imageUrl: item.icon,
+                imageUrl: myicon,
+                // imageUrl: item.icon,
                 color: iconColor,
-                width: config.iconSize,
+                // width: config.iconSize,
+                width: 24,
               )
             : DeferredWidget(
                 defer_icon.loadLibrary,
                 () => Icon(
-                  defer_icon.iconPicker(item.icon, item.fontFamily),
+                  // defer_icon.iconPicker(item.icon, item.fontFamily),
+                  defer_icon.iconPicker(myicon, 'MaterialIcons'),
                   color: iconColor,
-                  size: config.iconSize,
+                  size: 24,
+                  // size: config.iconSize,
                 ),
               );
       },

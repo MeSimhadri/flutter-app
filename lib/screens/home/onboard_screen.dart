@@ -80,7 +80,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> with ChangeLanguage {
 
     for (var i = 0; i < data.length; i++) {
       var slide = Slide(
-        title: data[i]['title'],
+        // title: data[i]['title'],
         description: data[i]['desc'],
         marginTitle: const EdgeInsets.only(
           top: 125.0,
@@ -93,7 +93,7 @@ class _OnBoardScreenState extends State<OnBoardScreen> with ChangeLanguage {
           color: kGrey900,
         ),
         backgroundColor: Colors.white,
-        marginDescription: const EdgeInsets.fromLTRB(20.0, 75.0, 20.0, 0),
+        marginDescription: const EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 0),
         styleDescription: const TextStyle(
           fontSize: 15.0,
           color: kGrey600,
@@ -101,8 +101,63 @@ class _OnBoardScreenState extends State<OnBoardScreen> with ChangeLanguage {
         foregroundImageFit: BoxFit.fitWidth,
       );
 
-      if (i == 2) {
-        slide.centerWidget = renderLoginWidget(data[i]['image']);
+      if (i == 0) {
+        slide.widgetDescription = Column(
+          children: const [
+            Text(
+              "Don't know where to go?",
+              style: TextStyle(
+                  fontSize: 18, color: mainBlue, fontWeight: FontWeight.w900),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Ask the friendly Blue Camel',
+              style: TextStyle(
+                  fontSize: 12, color: mainBlue, fontWeight: FontWeight.w400),
+            )
+          ],
+        );
+        slide.centerWidget =
+            Image.asset('assets/images/welcome_screen_1_small.png');
+      } else if (i == 1) {
+        slide.widgetDescription = Column(
+          children: const [
+            Text(
+              'Explore the possibilities',
+              style: TextStyle(
+                  fontSize: 18, color: mainBlue, fontWeight: FontWeight.w900),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'That Qatar has to offer',
+              style: TextStyle(
+                  fontSize: 12, color: mainBlue, fontWeight: FontWeight.w400),
+            )
+          ],
+        );
+        slide.centerWidget = Image.asset('assets/images/welcome_screen_2.png');
+      } else if (i == 2) {
+        slide.widgetDescription = Column(
+          children: const [
+            Text(
+              'Finding and booking activities',
+              style: TextStyle(
+                  fontSize: 18, color: mainBlue, fontWeight: FontWeight.w900),
+            ),
+            SizedBox(height: 10),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 70),
+              child: Text(
+                'We aim to make finding & booking activities easy and simple. No more hassles of phone calls.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 12, color: mainBlue, fontWeight: FontWeight.w400),
+              ),
+            )
+          ],
+        );
+        slide.centerWidget = Image.asset('assets/images/welcome_screen_3.png');
+        // slide.centerWidget = renderLoginWidget(data[i]['image']);
       } else {
         slide.pathImage = data[i]['image'];
       }
@@ -117,7 +172,8 @@ class _OnBoardScreenState extends State<OnBoardScreen> with ChangeLanguage {
     }
     var prefs = await SharedPreferences.getInstance();
     await prefs.setBool('seen', true);
-    await Navigator.pushReplacementNamed(context, RouteList.dashboard);
+    // await Navigator.pushReplacementNamed(context, RouteList.dashboard);
+    await Navigator.pushReplacementNamed(context, RouteList.login);
   }
 
   @override
@@ -132,23 +188,69 @@ class _OnBoardScreenState extends State<OnBoardScreen> with ChangeLanguage {
             return Container(
               key: UniqueKey(),
               child: IntroSlider(
+                showSkipBtn: false,
+                colorActiveDot: mainBlue,
+                sizeDot: 6,
                 slides: getSlides(data),
                 renderSkipBtn: Text(
                   S.of(context).skip,
                   style: TextStyle(color: Theme.of(context).primaryColor),
                 ),
-                renderDoneBtn: Text(
-                  isRequiredLogin ? '' : S.of(context).done,
-                  style: TextStyle(color: Theme.of(context).primaryColor),
+                renderDoneBtn: Container(
+                  width: 100,
+                  height: 30,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: mainBlue,
+                  ),
+                  child: const Text(
+                    'Log In',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 13, color: Colors.white),
+                  ),
                 ),
-                renderPrevBtn: Text(
-                  S.of(context).prev,
-                  style: TextStyle(color: Theme.of(context).primaryColor),
+                // Text(
+                //   isRequiredLogin ? '' : S.of(context).done,
+                //   style: TextStyle(color: Theme.of(context).primaryColor),
+                // ),
+                renderPrevBtn: Container(
+                  width: 100,
+                  height: 30,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: mainBlue),
+                    borderRadius: BorderRadius.circular(16),
+                    color: Colors.white,
+                  ),
+                  child: const Text(
+                    'Back',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 13, color: mainBlue),
+                  ),
                 ),
-                renderNextBtn: Text(
-                  S.of(context).next,
-                  style: TextStyle(color: Theme.of(context).primaryColor),
+                // Text(
+                //   S.of(context).prev,
+                //   style: TextStyle(color: Theme.of(context).primaryColor),
+                // ),
+                renderNextBtn: Container(
+                  width: 100,
+                  height: 30,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: mainBlue,
+                  ),
+                  child: const Text(
+                    'Next',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 13, color: Colors.white),
+                  ),
                 ),
+                // Text(
+                //   S.of(context).next,
+                //   style: TextStyle(color: Theme.of(context).primaryColor),
+                // ),
                 showDoneBtn: !isRequiredLogin,
                 onDonePress: onTapDone,
               ),

@@ -325,9 +325,9 @@ class _CustomTextFieldState extends State<CustomTextField>
         controller.clear();
         widget.onCancel?.call();
       },
-      child: Container(
+      child: Container( 
         color: Colors.transparent,
-        child: const Icon(Icons.cancel),
+        child: const Icon(Icons.cancel,color: Color(0XFF1A83C8),),
       ),
     );
   }

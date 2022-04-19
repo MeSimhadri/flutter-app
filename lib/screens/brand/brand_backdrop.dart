@@ -152,7 +152,7 @@ class _BrandPageState extends State<BrandPage>
                 const SizedBox(
                   width: 15.0,
                 ),
-                Text(title!)
+                Text(title ?? '')
               ],
             ),
             backTitle: Text(S.of(context).filter),
@@ -166,7 +166,8 @@ class _BrandPageState extends State<BrandPage>
     return ListenableProvider.value(
       value: brandModel,
       child: Consumer<BrandModel>(builder: (context, value, child) {
-        return backdrop(
+        return 
+        backdrop(
             products: brandModel.productList,
             isFetching: value.isFetching,
             errMsg: value.errMsg,

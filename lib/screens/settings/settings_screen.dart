@@ -721,11 +721,13 @@ class SettingScreenState extends State<SettingScreen>
 
     var settings = widget.settings ?? kDefaultSettings;
     var background = widget.background ?? kProfileBackground;
-    const textStyle = TextStyle(fontSize: 16);
+    const textStyle = TextStyle(fontSize: 16); 
 
-    final appBar = (showAppBar(RouteList.profile))
+    final appBar =
+     (showAppBar(RouteList.profile))
         ? sliverAppBarWidget
-        : SliverAppBar(
+        : 
+        SliverAppBar(
             backgroundColor: Theme.of(context).primaryColor,
             leading: IconButton(
               icon: renderDrawerIcon(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../common/constants.dart';
 import '../../generated/l10n.dart';
 
 class StaggerAnimation extends StatelessWidget {
@@ -49,9 +50,9 @@ class StaggerAnimation extends StatelessWidget {
         width: buttonSqueezeanimation.value,
         height: 50,
         alignment: FractionalOffset.center,
-        decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
-          borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+        decoration:const BoxDecoration(
+          color: maintabBlue, 
+          borderRadius:  BorderRadius.all(Radius.circular(25.0)),
         ),
         child: buttonSqueezeanimation.value > 75.0
             ? Text(

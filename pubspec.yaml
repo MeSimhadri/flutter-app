@@ -154,6 +154,12 @@ dependencies:
   #### For Listing App
   carousel_slider: 4.0.0
 
+flutter_native_splash:
+  color: "#FFFFFF"
+  # background_image: "assets/images/nativesplash.png"
+  # ios: false
+  web: false
+
 
   ###---- Some extra feature is disable by default -----###
   ### ▶️ Audio Feature
@@ -171,6 +177,7 @@ dependencies:
 dev_dependencies:
   flutter_lints: 1.0.4
   flutter_native_splash: ^2.0.5
+  flutter_launcher_icons: ^0.9.2
 #  convert_data:
 #    path: _dev/convert_data
 
@@ -211,6 +218,7 @@ flutter:
     - assets/images/favicon/
     - assets/html/
     - google_fonts/
+    - assets/categories/
 
 flutter_intl:
   enabled: true

@@ -76,15 +76,15 @@ class DynamicLayout extends StatelessWidget {
           key: config['key'] != null ? Key(config['key']) : UniqueKey(),
         );
 
-      case 'header_search':
-        return HeaderSearch(
-          config: HeaderConfig.fromJson(config),
-          onSearch: () {
-            Navigator.of(App.fluxStoreNavigatorKey.currentContext!)
-                .pushNamed(RouteList.homeSearch);
-          },
-          key: config['key'] != null ? Key(config['key']) : UniqueKey(),
-        );
+      // case 'header_search':
+      //   return HeaderSearch(
+      //     config: HeaderConfig.fromJson(config),
+      //     onSearch: () {
+      //       Navigator.of(App.fluxStoreNavigatorKey.currentContext!)
+      //           .pushNamed(RouteList.homeSearch);
+      //     },
+      //     key: config['key'] != null ? Key(config['key']) : UniqueKey(),
+      //   );
       case 'featuredVendors':
         return Services().widget.renderFeatureVendor(config);
       case 'category':

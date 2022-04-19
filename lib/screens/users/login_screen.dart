@@ -322,220 +322,304 @@ class _LoginPageState extends BaseScreen<LoginScreen>
                           (2 / (screenSize.height / screenSize.width)),
                       constraints: const BoxConstraints(maxWidth: 700),
                       child: AutofillGroup(
-                        child: Column(
-                          children: <Widget>[
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                            // const SizedBox(height: 40.0),
+                            const SizedBox(
+                              // height: 80.0,
+                              child: FluxImage(
+                                imageUrl: 'assets/images/logo.png',
+                              ),
+                            ),
                             const SizedBox(height: 40.0),
-                            Column(
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: const Color(0XFF1A83C8)
+                                        .withOpacity(0.2),
+                                    blurRadius: 3.0,
+                                  ),
+                                ],
+                              ),
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16)),
+                                elevation: 0,
+                                shadowColor: Colors.blue[800],
+                                child: Column(
                                   children: <Widget>[
-                                    SizedBox(
-                                      height: 40.0,
-                                      child: FluxImage(
-                                        imageUrl: themeConfig.logo,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 80.0),
-                            CustomTextField(
-                              key: const Key('loginEmailField'),
-                              controller: username,
-                              autofillHints: const [AutofillHints.email],
-                              showCancelIcon: true,
-                              autocorrect: false,
-                              enableSuggestions: false,
-                              textInputAction: TextInputAction.next,
-                              keyboardType: TextInputType.emailAddress,
-                              nextNode: passwordNode,
-                              decoration: InputDecoration(
-                                labelText: S.of(parentContext).username,
-                                hintText: S
-                                    .of(parentContext)
-                                    .enterYourEmailOrUsername,
-                              ),
-                            ),
-                            CustomTextField(
-                              key: const Key('loginPasswordField'),
-                              autofillHints: const [AutofillHints.password],
-                              obscureText: true,
-                              showEyeIcon: true,
-                              textInputAction: TextInputAction.done,
-                              controller: password,
-                              focusNode: passwordNode,
-                              decoration: InputDecoration(
-                                labelText: S.of(parentContext).password,
-                                hintText: S.of(parentContext).enterYourPassword,
-                              ),
-                            ),
-                            if ((kLoginSetting['isResetPasswordSupported'] ??
-                                false))
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 12.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    launchForgetPasswordURL(forgetPasswordUrl);
-                                  },
-                                  behavior: HitTestBehavior.opaque,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(12.0),
-                                    child: Text(
-                                      S.of(context).resetPassword,
+                                    const SizedBox(height: 20.0),
+                                    const Text(
+                                      'Sign in',
                                       style: TextStyle(
-                                        color: Theme.of(context).primaryColor,
-                                        decoration: TextDecoration.underline,
-                                      ),
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w900,
+                                          color: Color(0XFF1A83C8)),
                                     ),
-                                  ),
-                                ),
-                              ),
-                            if (kLoginSetting['isResetPasswordSupported'] !=
-                                true)
-                              const SizedBox(height: 50.0),
-                            StaggerAnimation(
-                              key: const Key('loginSubmitButton'),
-                              titleButton: S.of(context).signInWithEmail,
-                              buttonController: _loginButtonController.view
-                                  as AnimationController,
-                              onTap: () {
-                                if (!isLoading) {
-                                  _login(context);
-                                }
-                              },
-                            ),
-                            Stack(
-                              alignment: AlignmentDirectional.center,
-                              children: <Widget>[
-                                SizedBox(
-                                    height: 50.0,
-                                    width: 200.0,
-                                    child:
-                                        Divider(color: Colors.grey.shade300)),
-                                Container(
-                                    height: 30,
-                                    width: 40,
-                                    color: Theme.of(context).backgroundColor),
-                                if (kLoginSetting['showFacebook'] ||
-                                    kLoginSetting['showSMSLogin'] ||
-                                    kLoginSetting['showGoogleLogin'] ||
-                                    kLoginSetting['showAppleLogin'])
-                                  Text(
-                                    S.of(context).or,
-                                    style: TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.grey.shade400),
-                                  )
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                if (kLoginSetting['showAppleLogin'] &&
-                                    isAvailableApple)
-                                  InkWell(
-                                    onTap: () => _loginApple(context),
-                                    child: Container(
-                                      padding: const EdgeInsets.all(12),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(40),
-                                        color: Colors.black87,
-                                      ),
-                                      child: Image.asset(
-                                        'assets/icons/logins/apple.png',
-                                        width: 26,
-                                        height: 26,
-                                      ),
-                                    ),
-                                  ),
-                                if (kLoginSetting['showFacebook'])
-                                  InkWell(
-                                    onTap: () => _loginFacebook(context),
-                                    child: Container(
-                                      padding: const EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(40),
-                                        color: const Color(0xFF4267B2),
-                                      ),
-                                      child: const Icon(
-                                        Icons.facebook_rounded,
-                                        color: Colors.white,
-                                        size: 34.0,
-                                      ),
-                                    ),
-                                  ),
-                                if (kLoginSetting['showGoogleLogin'])
-                                  InkWell(
-                                    onTap: () => _loginGoogle(context),
-                                    child: Container(
-                                      padding: const EdgeInsets.all(12),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(40),
-                                        color: Colors.grey.shade300,
-                                      ),
-                                      child: Image.asset(
-                                        'assets/icons/logins/google.png',
-                                        width: 28,
-                                        height: 28,
-                                      ),
-                                    ),
-                                  ),
-                                if (kLoginSetting['showSMSLogin'])
-                                  InkWell(
-                                    onTap: () => _loginSMS(context),
-                                    child: Container(
-                                      padding: const EdgeInsets.all(12),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(40),
-                                        color: Colors.lightBlue.shade50,
-                                      ),
-                                      child: Image.asset(
-                                        'assets/icons/logins/sms.png',
-                                        width: 28,
-                                        height: 28,
-                                      ),
-                                    ),
-                                  ),
-                              ],
-                            ),
-                            const SizedBox(height: 30.0),
-                            Column(
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text(S.of(context).dontHaveAccount),
-                                    GestureDetector(
-                                      onTap: () {
-                                        if (kAdvanceConfig[
-                                                'EnableMembershipUltimate'] ==
-                                            true) {
-                                          Navigator.of(context).pushNamed(
-                                              RouteList
-                                                  .memberShipUltimatePlans);
-                                        } else {
-                                          Navigator.of(context)
-                                              .pushNamed(RouteList.register);
-                                        }
-                                      },
-                                      child: Text(
-                                        ' ${S.of(context).signup}',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Theme.of(context).primaryColor,
+                                    const SizedBox(height: 20.0),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 16),
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                            border: Border(
+                                                bottom: BorderSide(
+                                                    color: Colors.black))),
+                                        child: CustomTextField(
+                                          key: const Key('loginEmailField'),
+                                          controller: username,
+                                          autofillHints: const [
+                                            AutofillHints.email
+                                          ],
+                                          showCancelIcon: true,
+                                          autocorrect: false,
+                                          enableSuggestions: false,
+                                          textInputAction: TextInputAction.next,
+                                          keyboardType:
+                                              TextInputType.emailAddress,
+                                          nextNode: passwordNode,
+                                          decoration: InputDecoration(
+                                            isDense: true,
+                                            border: InputBorder.none,
+                                            labelStyle: const TextStyle(
+                                                color: Colors.black),
+                                            labelText:
+                                                S.of(parentContext).username,
+                                            hintText: S
+                                                .of(parentContext)
+                                                .enterYourEmailOrUsername,
+                                          ),
                                         ),
                                       ),
                                     ),
+                                    Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 16),
+                                      decoration: const BoxDecoration(
+                                          border: Border(
+                                              bottom: BorderSide(
+                                                  color: Colors.black))),
+                                      child: CustomTextField(
+                                        key: const Key('loginPasswordField'),
+                                        autofillHints: const [
+                                          AutofillHints.password
+                                        ],
+                                        obscureText: true,
+                                        showEyeIcon: true,
+                                        textInputAction: TextInputAction.done,
+                                        controller: password,
+                                        focusNode: passwordNode,
+                                        decoration: InputDecoration(
+                                          isDense: true,
+                                          border: InputBorder.none,
+                                          labelStyle: const TextStyle(
+                                              color: Colors.black),
+                                          labelText:
+                                              S.of(parentContext).password,
+                                          hintText: S
+                                              .of(parentContext)
+                                              .enterYourPassword,
+                                        ),
+                                      ),
+                                    ),
+                                    if ((kLoginSetting[
+                                            'isResetPasswordSupported'] ??
+                                        false))
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 12.0),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              launchForgetPasswordURL(
+                                                  forgetPasswordUrl);
+                                            },
+                                            behavior: HitTestBehavior.opaque,
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(12.0),
+                                              child: Text(
+                                                'Forgot Password?',
+                                                style: TextStyle(
+                                                  color: maintabBlue,
+                                                  // decoration:
+                                                  //     TextDecoration.underline,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    if (kLoginSetting[
+                                            'isResetPasswordSupported'] !=
+                                        true)
+                                      const SizedBox(height: 50.0),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 30),
+                                      child: StaggerAnimation(
+                                        key: const Key('loginSubmitButton'),
+                                        titleButton: 'Sign in',
+                                        buttonController: _loginButtonController
+                                            .view as AnimationController,
+                                        onTap: () {
+                                          if (!isLoading) {
+                                            _login(context);
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                    const SizedBox(height: 10),
+                                    const Text('or sign in with'),
+                                    const SizedBox(height: 10),
+                                    // Stack(
+                                    //   alignment: AlignmentDirectional.center,
+                                    //   children: <Widget>[
+                                    //     // SizedBox(
+                                    //     //     height: 50.0,
+                                    //     //     width: 200.0,
+                                    //     //     child:
+                                    //     //         Divider(color: Colors.grey.shade300)),
+                                    //     Container(
+                                    //         height: 30,
+                                    //         width: 40,
+                                    //         color: Theme.of(context).backgroundColor),
+                                    //     if (kLoginSetting['showFacebook'] ||
+                                    //         kLoginSetting['showSMSLogin'] ||
+                                    //         kLoginSetting['showGoogleLogin'] ||
+                                    //         kLoginSetting['showAppleLogin'])
+                                    //       Text(
+                                    //         S.of(context).or,
+                                    //         style: TextStyle(
+                                    //             fontSize: 12,
+                                    //             color: Colors.grey.shade400),
+                                    //       )
+                                    //   ],
+                                    // ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: <Widget>[
+                                        if (kLoginSetting['showAppleLogin'] &&
+                                            isAvailableApple)
+                                          InkWell(
+                                            onTap: () => _loginApple(context),
+                                            child: Container(
+                                              padding: const EdgeInsets.all(12),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(40),
+                                                color: Colors.black87,
+                                              ),
+                                              child: Image.asset(
+                                                'assets/icons/logins/apple.png',
+                                                width: 26,
+                                                height: 26,
+                                              ),
+                                            ),
+                                          ),
+                                        if (kLoginSetting['showFacebook'])
+                                          InkWell(
+                                            onTap: () =>
+                                                _loginFacebook(context),
+                                            child: Card(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50)),
+                                              child: const Padding(
+                                                padding: EdgeInsets.all(2.0),
+                                                child: Icon(
+                                                  Icons.facebook,
+                                                  color: Color(0xFF1778F2),
+                                                  size: 50.0,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        if (kLoginSetting['showGoogleLogin'])
+                                          InkWell(
+                                            onTap: () => _loginGoogle(context),
+                                            child: Card(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50)),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Image.asset(
+                                                  'assets/icons/logins/google.png',
+                                                  width: 35,
+                                                  height: 35,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        if (kLoginSetting['showSMSLogin'])
+                                          InkWell(
+                                            onTap: () => _loginSMS(context),
+                                            child: Card(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50)),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Image.asset(
+                                                  'assets/icons/logins/sms.png',
+                                                  width: 35,
+                                                  height: 35,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 30.0),
+                                    Column(
+                                      children: <Widget>[
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            Text("Don't have an account?"),
+                                            GestureDetector(
+                                              onTap: () {
+                                                if (kAdvanceConfig[
+                                                        'EnableMembershipUltimate'] ==
+                                                    true) {
+                                                  Navigator.of(context)
+                                                      .pushNamed(RouteList
+                                                          .memberShipUltimatePlans);
+                                                } else {
+                                                  Navigator.of(context)
+                                                      .pushNamed(
+                                                          RouteList.register);
+                                                }
+                                              },
+                                              child: Text(
+                                                ' ${S.of(context).signup}',
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: maintabBlue,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 20)
                                   ],
                                 ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
+                              ),
+                            ),
+                          ])),
                     ),
                   );
                 }),
