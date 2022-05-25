@@ -14,8 +14,6 @@
 		<string>applinks:fluxstoreinspireui.page.link</string>
 	</array>
 	<key>com.apple.security.application-groups</key>
-	<array>
-		<string>group.com.inspireui.mstore.flutter.onesignal</string>
-	</array>
+	<array/>
 </dict>
 </plist>

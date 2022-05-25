@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-import 'package:inspireui/utils.dart';
 
 import '../common/constants.dart';
 import '../common/tools/adaptive_tools.dart';

@@ -13,6 +13,7 @@
         android:name="androidx.multidex.MultiDexApplication"
         android:usesCleartextTraffic="true"
         android:label="Blue Camel"
+        android:exported="true"
         android:icon="@mipmap/ic_launcher">
 
         <activity
